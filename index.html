@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Skin Cancer Detection Web Pagee</title>
+        <!-- Icon-->
+        <link rel="icon" type="image/x-icon" href="/staticFiles/assets/img/safety.png" />
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
+        <!-- SimpleLightbox plugin CSS-->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
+        <!-- style -->
+        <link href="/staticFiles/css/styles.css" rel="stylesheet" />
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" href="#page-top">Skin Cancer Detection System</a>
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto my-2 my-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="#advantages">Advantages</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#diagnose">Diagnose It</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Masthead-->
+        <header class="masthead">
+            <div class="container px-4 px-lg-5 h-100">
+                <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
+                    <div class="col-lg-8 align-self-end">
+                        <h1 class="text-black font-weight-bold">The easiest way to examine yourself.</h1>
+                        <hr class="divider" />
+                    </div>
+                    <div class="col-lg-8 align-self-baseline">
+                        <br>
+                        <br>
+                        <p class="text-black-75 mb-5">Start Bootstrap can help you build better websites using the Bootstrap framework! Just download a theme and start customizing, no strings attached!</p>
+                        <a class="btn btn-primary btn-xl" href="#diagnose">Try It !</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Services-->
+        <section class="page-section" id="advantages">
+            <div class="container px-4 px-lg-5">
+                <h2 class="text-center mt-0">Advantages</h2>
+                <hr class="divider" />
+                <div class="row gx-4 gx-lg-5">
+                    <div class="col-lg-3 col-md-6 text-center">
+                        <div class="mt-5">
+                            <div class="mb-2"><img src="staticFiles/assets/img/safety.png" alt="fancybox"></div>
+                            <h3 class="h4 mb-2">Fastest way</h3>
+                            <p class="text-muted mb-0">You can see your result immediately.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 text-center">
+                        <div class="mt-5">
+                            <div class="mb-2"><img src="staticFiles/assets/img/safety.png" alt="fancybox">
+                            </div>
+                            <h3 class="h4 mb-2">Accuracy</h3>
+                            <p class="text-muted mb-0">The accuracy rate of our model is 80%.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 text-center">
+                        <div class="mt-5">
+                            <div class="mb-2"><img src="staticFiles/assets/img/safety.png" alt="fancybox">
+                            </div>
+                            <h3 class="h4 mb-2">Free</h3>
+                            <p class="text-muted mb-0">You do not need to pay any fees.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 text-center">
+                        <div class="mt-5">
+                            <div class="mb-2"><img src="staticFiles/assets/img/safety.png" alt="fancybox">
+                            </div>
+                            <h3 class="h4 mb-2">Early Diagnose</h3>
+                            <p class="text-muted mb-0">Early diagnosis provides 98% success in the treatment process.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Call to action-->
+        <h2 class="text-center text-mycolor"> See the result now !! </h2>
+        <section class="page-section bg-white text-black " id="diagnose">
+            
+            <div class="container px-4 px-lg-5 text-center">
+
+                <form method="POST" enctype="multipart/form-data">
+      <!-- <div id="img-preview"></div> -->
+                     <input type="file" class="btn btn-primary btn-xl" id="image-input" name="image-input">
+                    
+                    <button class="btn btn-primary btn-xl" type="submit" id="predict-button" onclick= "predict()">Predict</button>
+
+                </form>
+
+                <div class="mb-4" id="result-heading">
+                    <br>
+                    <br>
+                    <h2 class="mb-4 text-mycolor">{{rest}}</h2>
+                    <img id="picture" src="data:image/jpeg;base64,{{ img_data }}" alt="">
+                </div>
+                 <script>
+    // Sonucu print etmek icin olan bolum:
+                    function predict() {
+                        //validate image extension
+
+    // Get the file input element
+                        var allowedExtension = ['jpeg', 'jpg'];
+                        var fileExtension = document.getElementById('image-input').value.split('.').pop().toLowerCase();
+                        var isValidFile = false;
+                        for(var index in allowedExtension) {
+
+                            if(fileExtension === allowedExtension[index]) {
+                                isValidFile = true; 
+                                break;
+                            }
+                        }
+                        if(!isValidFile){
+                            alert(fileExtension + ' extension is not allowed..' + 
+                                'The allowed extensions is jpg');
+                        }
+
+                        let input = document.getElementById('image-input');
+
+
+    // Make sure a file was selected
+                        if (input.files && input.files[0]) {
+        // Create a FormData object to send the file data
+                            let formData = new FormData();
+                            formData.append('image-input', input.files[0]);
+
+
+        // Send the file data to the server using an AJAX request
+                            let xhr = new XMLHttpRequest();
+                            xhr.open('POST', '/', true);
+                            xhr.onload = function () {
+                                if (xhr.status === 200) {
+                                    let prediction = JSON.parse(xhr.responseText).predict;
+                                    //console.log(prediction)
+                                    let result = document.getElementById('result');
+                                    result.innerHTML = prediction;
+                                } else {
+                                    alert('Error making prediction.');
+                                }
+                            };
+                            xhr.onerror = function() {
+                                alert('Error connecting to server.');
+                            };
+                            xhr.send(formData);
+
+                        }
+                        else{
+                            alert('No file choosen.');
+
+                        }
+                    }
+
+                </script>
+            </div>
+        </section>
+
+
+        <!-- Footer-->
+        <footer class="bg-light py-5">
+            <div class="container px-4 px-lg-5"><div class="small text-center text-muted">Copyright &copy; 2023 - Doğa Yağlıcıoğlu/Yeditepe Üniversitesi</div></div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- SimpleLightbox plugin JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="/staticFiles/js/scripts.js"></script>
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <!-- * *                               SB Forms JS                               * *-->
+        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    </body>
+</html>
