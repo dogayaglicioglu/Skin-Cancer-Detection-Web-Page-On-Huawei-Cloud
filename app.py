@@ -32,14 +32,14 @@ def skin_cancer():
         file = request.files['image-input']
         if file and allowed_file(file.filename):
             # Mysql connection
-            mydb = mysql.connector.connect(host="10.0.2.21", user="root", password="doga2000*", database="doga-project")
+            mydb = mysql.connector.connect(host="10.0.2.21", user="root", password="DATABASEPASSWORD", database="doga-project")
             mycursor = mydb.cursor()
             today = date.today()
             
             # Save the file to a temporary location
-            url = "https://2fec676ce4e447d0980abfbeb404b0a3.apig.ap-southeast-3.huaweicloudapis.com/v1/infers/a4c7a774-7e28-4aff-9911-ad86cf662268"
-            ak = "CY15DWQC2GNUUS2WGLRJ"
-            sk = "FeKRcfPeOjXNIQpmUvT5Jbda0BoeXgrvdsjkqUQB"
+            url = "MODELART END-POINT URL"
+            ak = "YOUR ACCESS KEY"
+            sk = "YOUR SECRET KEY"
             method = 'POST'
             headers = {"x-sdk-content-sha256": "UNSIGNED-PAYLOAD"}
             request2 = signer.HttpRequest(method, url, headers)
